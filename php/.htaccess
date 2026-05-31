@@ -1,0 +1,38 @@
+Options -Indexes
+
+# Force PHP execution
+AddType application/x-httpd-php .php
+AddHandler application/x-httpd-php .php
+
+# Fallback for some hosts
+<IfModule mod_fcgid.c>
+    AddHandler fcgid-script .php
+</IfModule>
+
+<IfModule mod_proxy_fcgi.c>
+    <FilesMatch "\.php$">
+        SetHandler "proxy:unix:/run/php/php-fpm.sock|fcgi://localhost"
+    </FilesMatch>
+</IfModule>
+
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Protect config file from direct browser access
+<Files "config.php">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Deny,Allow
+        Deny from all
+    </IfModule>
+</Files>
+
+# Allow uploads
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+</IfModule>

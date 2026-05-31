@@ -1,0 +1,23 @@
+-- Insert IPTV ACTIVE CODE products
+INSERT INTO tnsatbeltnd_services (id, name, description, image_url, price_tnd, price_credits, stock, category, created_at) VALUES
+(HEX(RANDOM_BYTES(16)), 'MATADOR IPTV 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716489136.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'SSTV+ 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716489362.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ALPHA + TAALIMIYA + DIWAN SPORT 12MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1720104154.png', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ACS TANIT 12MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1747315774.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ACS NOVA 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1720104628.png', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ORCA PRO+ & MAX IPTV 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716490505.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ORCA PRO MAX LITE 12 MOIS', 'Sans Diwan Sport', 'https://fastpro.ovh/storage/assets/img/produits/1739360015.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ORCA + IPTV 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716490430.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ORCA VPN 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716490566.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'SRT IPTV 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1747556770.png', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ES-IPTV PRO+ 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716489025.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ESIPTV PRO+ 6 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716489074.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'ES IPTV PRO 12 MOIS Sans Diwan', 'Sans Diwan sports', 'https://fastpro.ovh/storage/assets/img/produits/1739359187.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'AVATAR IPTV SANS DIWEN 12MOIS', 'SANS DIWEN SPORT', 'https://fastpro.ovh/storage/assets/img/produits/1771500677.png', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'AVATAR IPTV 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716489475.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'SONIC TV ANDROID + DIWEN 12MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1742054995.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'SONIC TV ANDROID 12MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716489886.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'MMTV IPTV ANDROID 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716489521.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'MMTV IPTV ANDROID 6 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716489612.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'PRINCE TV PRO ANDROID 12 MOIS', '.', 'https://fastpro.ovh/storage/assets/img/produits/1716490092.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW()),
+(HEX(RANDOM_BYTES(16)), 'PRINCE TV PRO ANDROID 6 MOIS', 'tv', 'https://fastpro.ovh/storage/assets/img/produits/1740315640.jpg', 0, 0, NULL, 'IPTV ACTIVE CODE', NOW());
