@@ -9,12 +9,6 @@ const Footer = () => {
         <p className="text-xs text-muted-foreground">
           © {new Date().getFullYear()} TNSAT. {t("footerRights")}
         </p>
-        <span className="text-xs text-muted-foreground">
-          Developed by{" "}
-          <a href="https://ihebchebbi.pro/" target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-primary transition-colors">
-            Iheb Chebbi
-          </a>
-        </span>
       </div>
     </footer>
   );
