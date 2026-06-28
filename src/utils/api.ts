@@ -3,7 +3,7 @@
  * All CRUD operations go through these functions
  */
 
-const API_BASE = "https://luccibyey.com.tn/satutnd/backend/api";
+const API_BASE = "https://draminesaid.com/directadmin/satutnd/backend/api";
 
 // Paginated response shape from PHP APIs
 export interface PaginatedResponse<T> {
