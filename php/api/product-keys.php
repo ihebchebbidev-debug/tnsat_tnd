@@ -327,12 +327,15 @@ if ($method === 'DELETE') {
     $id = $_GET['id'] ?? null;
     if (!$id) jsonResponse(['error' => 'id required'], 400);
 
+    $check = $db->prepare('SELECT status FROM tnsatbeltnd_product_keys WHERE id = ?');
+    $check->execute([$id]);
+    $key = $check->fetch(PDO::FETCH_ASSOC);
+
+    if (!$key) jsonResponse(['error' => 'Key not found'], 404);
+    if ($key['status'] === 'assigned') jsonResponse(['error' => 'Cannot delete an assigned key'], 409);
+
     $stmt = $db->prepare('DELETE FROM tnsatbeltnd_product_keys WHERE id = ?');
     $stmt->execute([$id]);
-
-    if ($stmt->rowCount() === 0) {
-        jsonResponse(['error' => 'Key not found'], 404);
-    }
 
     jsonResponse(['success' => true]);
 }
