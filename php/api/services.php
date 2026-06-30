@@ -78,6 +78,13 @@ switch ($method) {
                     $hidden = ($m === 'whitelist' && !$isL) || ($m === 'blacklist' && $isL);
                     if ($hidden) $hiddenCategoryNames[$c['name']] = true;
                 }
+
+                // Pre-fetch actual available key counts from product_keys table (single query)
+                $availableKeyCounts = [];
+                $kstmt = $db->query('SELECT service_id, COUNT(*) as cnt FROM tnsatbeltnd_product_keys WHERE status = "available" GROUP BY service_id');
+                foreach ($kstmt->fetchAll() as $kc) {
+                    $availableKeyCounts[$kc['service_id']] = intval($kc['cnt']);
+                }
             }
 
             $out = [];
@@ -89,9 +96,8 @@ switch ($method) {
                     if ($mode === 'whitelist' && !$listed) continue;
                     if ($mode === 'blacklist' && $listed) continue;
                     if ($r['category'] && isset($hiddenCategoryNames[$r['category']])) continue;
-                    // Hide stock-type services from resellers only when the explicit stock count is zero.
-                    // Services with NULL stock are treated as key-backed stock products and remain visible.
-                    if (($r['sale_type'] ?? 'command') === 'stock' && $r['stock'] !== null && intval($r['stock']) <= 0) continue;
+                    // Hide stock-type services only when there are truly no available keys
+                    if (($r['sale_type'] ?? 'command') === 'stock' && ($availableKeyCounts[$r['id']] ?? 0) <= 0) continue;
                     $r['default_price_credits'] = $r['price_credits'];
                     if (array_key_exists($r['id'], $overrides)) {
                         $r['price_credits'] = $overrides[$r['id']];
