@@ -127,7 +127,7 @@ const ServiceDetail = () => {
               <div className="bg-secondary/60 rounded-xl p-6 border border-border mb-6">
                 <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-3xl font-display font-bold text-foreground">{Number(service.price_credits)}</span>
-                  <span className="text-sm font-medium text-muted-foreground">TND</span>
+                  <span className="text-sm font-medium text-muted-foreground">Crédits</span>
                 </div>
               </div>
 
@@ -171,7 +171,7 @@ const ServiceDetail = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="text-lg font-display font-bold text-foreground">{Number(s.price_credits)}</span>
-                        <span className="text-xs text-muted-foreground ml-1">TND</span>
+                        <span className="text-xs text-muted-foreground ml-1">Crédits</span>
                       </div>
                       <span className="text-xs font-medium text-primary">{t("viewService")}</span>
                     </div>

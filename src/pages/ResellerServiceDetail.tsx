@@ -249,7 +249,7 @@ const ResellerServiceDetail = () => {
           <div className="flex items-center gap-2 text-xs">
             <Zap className="h-3.5 w-3.5 text-primary" />
             <span className="font-bold text-foreground">{reseller.credits.toLocaleString()}</span>
-            <span className="text-muted-foreground">TND</span>
+            <span className="text-muted-foreground">Crédits</span>
           </div>
         </div>
       </div>
@@ -275,7 +275,7 @@ const ResellerServiceDetail = () => {
             {service.description && <p className="text-sm text-muted-foreground mb-3">{service.description}</p>}
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-display font-bold text-primary">{Number(service.price_credits)}</span>
-              <span className="text-sm text-muted-foreground">TND</span>
+              <span className="text-sm text-muted-foreground">Crédits</span>
             </div>
           </div>
         </div>
@@ -297,13 +297,13 @@ const ResellerServiceDetail = () => {
               </div>
               <div className="bg-secondary/50 rounded-xl p-4 flex justify-between text-sm">
                 <span className="text-muted-foreground">{t("price") || "Prix"} × {purchaseQuantity}</span>
-                <span className="font-bold text-foreground">{totalCost} TND</span>
+                <span className="font-bold text-foreground">{totalCost} Crédits</span>
               </div>
               <button
                 onClick={() => setConfirmOpen(true)}
                 disabled={outOfStock || cantAfford || purchasing}
                 className="w-full h-12 rounded-xl gradient-primary text-primary-foreground text-sm font-semibold shadow-glow hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] disabled:opacity-40 transition-all flex items-center justify-center gap-2">
-                {outOfStock ? (t("outOfStock") || "Stock épuisé") : cantAfford ? (t("notEnoughPoints") || "Solde TND insuffisant") : <><ShoppingCart className="h-4 w-4" />{t("buy") || "Acheter"}</>}
+                {outOfStock ? (t("outOfStock") || "Stock épuisé") : cantAfford ? (t("notEnoughPoints") || "Solde Crédits insuffisant") : <><ShoppingCart className="h-4 w-4" />{t("buy") || "Acheter"}</>}
               </button>
             </div>
         </div>
@@ -315,7 +315,7 @@ const ResellerServiceDetail = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>{t("confirmPurchase") || "Confirmer l'achat"}</AlertDialogTitle>
             <AlertDialogDescription>
-              {service.name} × {purchaseQuantity} = <strong>{totalCost} TND</strong>
+              {service.name} × {purchaseQuantity} = <strong>{totalCost} Crédits</strong>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

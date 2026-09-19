@@ -610,7 +610,7 @@ const ResellerDashboard = () => {
                         <div key={s.id} className="bg-card rounded-2xl border border-border shadow-premium overflow-hidden group hover:border-primary/20 hover:shadow-lg transition-all relative">
                           {/* Price badge */}
                           <div className="absolute top-3 end-3 z-10 px-3 py-1.5 rounded-lg bg-card/90 backdrop-blur-sm border border-border text-foreground text-xs font-bold shadow-lg">
-                            <span className="text-primary">{Number(s.price_credits)} TND</span>
+                            <span className="text-primary">{Number(s.price_credits)} Crédits</span>
                           </div>
                           {/* Stock badges hidden for resellers */}
                           {s.image_url ? (
@@ -685,7 +685,7 @@ const ResellerDashboard = () => {
                             <td className="py-3 px-4 text-foreground">{name}</td>
                             <td className="py-3 px-4 text-muted-foreground text-sm">{reseller.name}</td>
                             <td className="py-3 px-4 text-foreground">1</td>
-                            <td className="py-3 px-4 text-foreground font-medium">{Number(o.credits_used)} TND</td>
+                            <td className="py-3 px-4 text-foreground font-medium">{Number(o.credits_used)} Crédits</td>
                             <td className="py-3 px-4 text-muted-foreground text-xs max-w-[180px] truncate">{o.note || "—"}</td>
                             <td className="py-3 px-4 text-muted-foreground text-xs whitespace-nowrap">{new Date(o.created_at).toLocaleDateString()}</td>
                             <td className="py-3 px-4">{getStatusBadge(o.status)}</td>
@@ -1019,7 +1019,7 @@ const ResellerDashboard = () => {
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-border/50">
                     <span className="text-sm text-muted-foreground">{t("pointsBalance")}</span>
-                    <span className="text-sm font-bold text-primary">{reseller.credits.toLocaleString()} TND</span>
+                    <span className="text-sm font-bold text-primary">{reseller.credits.toLocaleString()} Crédits</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
                     <span className="text-sm text-muted-foreground">Level</span>
@@ -1186,7 +1186,7 @@ const ResellerDashboard = () => {
               <div className="bg-secondary/50 rounded-xl p-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">{t("price")} × {purchaseQuantity}</span>
-                  <span className="font-bold text-foreground">{Number(purchaseService.price_credits) * purchaseQuantity} TND</span>
+                  <span className="font-bold text-foreground">{Number(purchaseService.price_credits) * purchaseQuantity} Crédits</span>
                 </div>
               </div>
             </div>
@@ -1219,7 +1219,7 @@ const ResellerDashboard = () => {
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   <div><span className="text-muted-foreground">{t("service")}:</span> <span className="font-medium text-foreground">{respondingOrder.service_name}</span></div>
                   <div><span className="text-muted-foreground">{t("status")}:</span> {getStatusBadge(respondingOrder.status)}</div>
-                  <div><span className="text-muted-foreground">{t("pointsUsed")}:</span> <span className="font-medium text-foreground">{respondingOrder.credits_used} TND</span></div>
+                  <div><span className="text-muted-foreground">{t("pointsUsed")}:</span> <span className="font-medium text-foreground">{respondingOrder.credits_used} Crédits</span></div>
                   <div><span className="text-muted-foreground">{t("date")}:</span> <span className="text-foreground">{new Date(respondingOrder.created_at).toLocaleDateString()}</span></div>
                 </div>
                 {respondingOrder.note && <div className="text-xs text-muted-foreground mt-1">{t("note")}: {respondingOrder.note}</div>}

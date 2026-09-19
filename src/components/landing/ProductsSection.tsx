@@ -79,7 +79,7 @@ const ProductsSection = ({ services, loading }: { services: ApiService[]; loadin
                       <div className="flex items-center justify-between">
                         <div>
                           <span className="text-xl font-display font-bold text-foreground">{Number(s.price_credits)}</span>
-                          <span className="text-[10px] font-medium text-muted-foreground ms-1 uppercase">TND</span>
+                          <span className="text-[10px] font-medium text-muted-foreground ms-1 uppercase">Crédits</span>
                         </div>
                         <span className="inline-flex items-center gap-1 h-9 px-4 text-xs font-semibold rounded-xl gradient-primary text-primary-foreground shadow-sm group-hover:shadow-glow transition-all duration-200">
                           {t("addToCart")}

@@ -121,10 +121,10 @@ const AnalyticsCharts = ({ orders, clients, services }: Props) => {
 
       {/* Summary cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <MiniStat label={t("periodRevenue")} value={`${totalRevenue.toFixed(0)} TND`} />
+        <MiniStat label={t("periodRevenue")} value={`${totalRevenue.toFixed(0)} Crédits`} />
         <MiniStat label={t("periodOrders")} value={filteredOrders.length.toString()} />
         <MiniStat label={t("activeClients")} value={activeClientsCount.toString()} />
-        <MiniStat label={t("avgOrderValue")} value={filteredOrders.length > 0 ? `${(totalRevenue / filteredOrders.length).toFixed(1)} TND` : "0"} />
+        <MiniStat label={t("avgOrderValue")} value={filteredOrders.length > 0 ? `${(totalRevenue / filteredOrders.length).toFixed(1)} Crédits` : "0"} />
       </div>
 
       {/* Charts grid */}
@@ -149,7 +149,7 @@ const AnalyticsCharts = ({ orders, clients, services }: Props) => {
                     fontSize: "12px",
                   }}
                 />
-                <Bar dataKey="revenue" name="TNDs" fill="hsl(228, 76%, 52%)" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="revenue" name="Créditss" fill="hsl(228, 76%, 52%)" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           ) : (
@@ -204,7 +204,7 @@ const AnalyticsCharts = ({ orders, clients, services }: Props) => {
                     borderRadius: "12px",
                     fontSize: "12px",
                   }}
-                  formatter={(value: number) => `${value.toFixed(0)} TND`}
+                  formatter={(value: number) => `${value.toFixed(0)} Crédits`}
                 />
               </PieChart>
             </ResponsiveContainer>

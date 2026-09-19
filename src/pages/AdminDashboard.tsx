@@ -1143,7 +1143,7 @@ const AdminDashboard = () => {
   const exportClients = () => downloadCSV("clients.csv", [t("name"), t("email"), t("points"), t("status"), t("date")], clients.map(c => [c.name, c.email, String(c.credits), c.is_active ? t("active") : t("inactive"), c.created_at || ""]));
   const exportResellers = () => downloadCSV("resellers.csv", [t("name"), t("email"), t("points"), t("status"), t("canAddResellers"), t("date")], resellers.map(r => [r.name, r.email, String(r.credits), r.is_active ? t("active") : t("inactive"), r.can_add_resellers ? "Yes" : "No", r.created_at || ""]));
   const exportOrders = () => downloadCSV("orders.csv", [t("buyer"), t("service"), t("status"), t("date")], orders.map(o => [getBuyerName(o), o.service_name || getServiceName(o.service_id), o.status, o.created_at]));
-  const exportServices = () => downloadCSV("services.csv", [t("name"), t("description"), "TNDs", t("stock")], services.map(s => [s.name, s.description, String(s.price_credits), s.stock !== null ? String(s.stock) : ""]));
+  const exportServices = () => downloadCSV("services.csv", [t("name"), t("description"), "Créditss", t("stock")], services.map(s => [s.name, s.description, String(s.price_credits), s.stock !== null ? String(s.stock) : ""]));
 
   // Server-side search for paginated tabs; client-side for services
   const filteredClients = clients; // already filtered server-side
@@ -1304,7 +1304,7 @@ const AdminDashboard = () => {
                 <StatCard icon={Users} label={t("totalClients")} value={clientsTotal.toString()} color="primary" />
                 <StatCard icon={Store} label={t("totalResellers")} value={resellersTotal.toString()} color="accent" />
                 <StatCard icon={ShoppingCart} label={t("totalOrders")} value={ordersTotal.toString()} color="success" />
-                <StatCard icon={DollarSign} label={t("totalRevenue")} value={`${totalPointsUsed.toLocaleString()} TND`} color="primary" />
+                <StatCard icon={DollarSign} label={t("totalRevenue")} value={`${totalPointsUsed.toLocaleString()} Crédits`} color="primary" />
               </div>
               <div className="grid sm:grid-cols-1 gap-5">
                 <div className="bg-card rounded-2xl border border-border shadow-premium p-6 relative overflow-hidden group hover:border-yellow-500/20 transition-all">
@@ -1452,7 +1452,7 @@ const AdminDashboard = () => {
                     <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t("pricing")}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="text-[10px] text-muted-foreground uppercase mb-1 block">Prix (TND) *</label>
+                        <label className="text-[10px] text-muted-foreground uppercase mb-1 block">Prix (Crédits) *</label>
                         <input placeholder="0" type="text" inputMode="decimal" value={serviceForm.priceCredits} onChange={(e) => {
                           const raw = e.target.value.replace(',', '.');
                           if (raw !== '' && !/^\d*\.?\d{0,2}$/.test(raw)) return;
@@ -1562,7 +1562,7 @@ const AdminDashboard = () => {
                         <h3 className="font-display font-semibold text-foreground text-sm mb-1">{s.name}</h3>
                         <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{s.description}</p>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-lg font-bold text-foreground">{s.price_credits} TND</span>
+                          <span className="text-lg font-bold text-foreground">{s.price_credits} Crédits</span>
                         </div>
                         <div className="flex flex-wrap gap-1.5 mb-3">
                           {s.stock !== null && <span className="text-[10px] px-2 py-0.5 rounded-full bg-secondary text-muted-foreground">{t("stock")}: {s.stock}</span>}
@@ -2192,7 +2192,7 @@ const AdminDashboard = () => {
                          <th className="py-3 px-6 font-medium text-muted-foreground text-start">{t("buyer")}</th>
                          <th className="py-3 px-6 font-medium text-muted-foreground text-start">{t("service")}</th>
                          <th className="py-3 px-6 font-medium text-muted-foreground text-start">{t("durationMonths")}</th>
-                         <th className="py-3 px-6 font-medium text-muted-foreground text-start">TNDs</th>
+                         <th className="py-3 px-6 font-medium text-muted-foreground text-start">Créditss</th>
                          <th className="py-3 px-6 font-medium text-muted-foreground text-start">{t("date")}</th>
                          <th className="py-3 px-6 font-medium text-muted-foreground text-start">{t("status")}</th>
                        </tr></thead>
@@ -2654,7 +2654,7 @@ const AdminDashboard = () => {
                     <label className="block text-sm font-semibold text-foreground mb-1">Devise de la plateforme</label>
                     <p className="text-xs text-muted-foreground">
                       Tous les soldes, prix et transactions sont exprimés directement en{" "}
-                      <span className="text-primary font-bold">Dinar Tunisien (TND)</span>.
+                      <span className="text-primary font-bold">Dinar Tunisien (Crédits)</span>.
                       Aucune conversion à configurer.
                     </p>
                   </div>
@@ -2683,14 +2683,14 @@ const AdminDashboard = () => {
                 <h4>Les 3 types d'utilisateurs</h4>
                 <ul>
                   <li><strong>Vous (Administrateur)</strong> — Vous contrôlez tout : les produits, les comptes, les prix, les commandes, les réclamations.</li>
-                  <li><strong>Clients</strong> — Ce sont vos acheteurs directs. Ils se connectent, voient vos produits, et achètent avec du solde TND.</li>
+                  <li><strong>Clients</strong> — Ce sont vos acheteurs directs. Ils se connectent, voient vos produits, et achètent avec du solde Crédits.</li>
                   <li><strong>Revendeurs</strong> — Ce sont des partenaires qui achètent vos produits pour les revendre à leurs propres clients. Certains peuvent même créer des sous-revendeurs.</li>
                 </ul>
                 <h4>Le principe général</h4>
-                <p>Tout fonctionne avec des <strong>TND</strong>. Vos clients et revendeurs vous paient en argent réel (virement, espèces, etc.), et en échange vous leur ajoutez du solde TND sur la plateforme. Avec ces TND, ils achètent vos produits.</p>
+                <p>Tout fonctionne avec des <strong>Crédits</strong>. Vos clients et revendeurs vous paient en argent réel (virement, espèces, etc.), et en échange vous leur ajoutez du solde Crédits sur la plateforme. Avec ces Crédits, ils achètent vos produits.</p>
                 <h4>Le cycle de vie d'une vente</h4>
                 <ol>
-                  <li>Vous créez un produit (service IPTV, compte Netflix, etc.) avec un prix en TND.</li>
+                  <li>Vous créez un produit (service IPTV, compte Netflix, etc.) avec un prix en Crédits.</li>
                   <li>Un client/revendeur achète → son solde sont déduits automatiquement.</li>
                   <li>Soit la commande est livrée automatiquement (si vous avez des clés en stock), soit elle attend que vous remplissiez les identifiants manuellement.</li>
                   <li>Le client voit ses identifiants dans son tableau de bord et reçoit une notification.</li>
@@ -2703,7 +2703,7 @@ const AdminDashboard = () => {
                 <ul>
                   <li><strong>Total Clients / Revendeurs</strong> — Le nombre de comptes créés.</li>
                   <li><strong>Total Commandes</strong> — Toutes les ventes effectuées.</li>
-                  <li><strong>Revenu Total</strong> — La somme de tous le solde TND dépensés par vos clients et revendeurs.</li>
+                  <li><strong>Revenu Total</strong> — La somme de tous le solde Crédits dépensés par vos clients et revendeurs.</li>
                   <li><strong>Commandes en attente</strong> — Les ventes qui attendent que vous fournissiez les identifiants. <em>Logique : seules les commandes "pending" sans clé automatique apparaissent ici.</em></li>
                   
                 </ul>
@@ -2719,7 +2719,7 @@ const AdminDashboard = () => {
                   <li><strong>Nom</strong> — Ex: "IPTV 12 mois Premium".</li>
                   <li><strong>Description</strong> — Détails visibles par l'acheteur.</li>
                   <li><strong>Image</strong> — URL de l'image du produit (copier-coller un lien d'image).</li>
-                  <li><strong>TNDs</strong> — Entrez le prix en TND directement.</li>
+                  <li><strong>Créditss</strong> — Entrez le prix en Crédits directement.</li>
                   <li><strong>Stock</strong> — Laissez vide = stock illimité. Sinon entrez une quantité. <em>Logique : chaque achat réduit le stock de 1. Si le stock atteint 0, personne ne peut acheter.</em></li>
                   <li><strong>Catégorie</strong> — Classement du produit (IPTV, Netflix, etc.).</li>
                   
@@ -2728,8 +2728,8 @@ const AdminDashboard = () => {
                 </ol>
                 <h4>Ce qui se passe en coulisse quand quelqu'un achète</h4>
                 <ol>
-                  <li>Le système vérifie que l'acheteur a assez de TND.</li>
-                  <li>Le solde TND sont déduits immédiatement de son solde.</li>
+                  <li>Le système vérifie que l'acheteur a assez de Crédits.</li>
+                  <li>Le solde Crédits sont déduits immédiatement de son solde.</li>
                   <li>Le stock du service est réduit de 1 (si le stock est défini).</li>
                   <li>Si des <strong>clés produit</strong> sont disponibles pour ce service → une clé est assignée automatiquement et la commande est livrée instantanément.</li>
                   <li>Sinon → la commande passe en "En attente" et vous devez la traiter manuellement.</li>
@@ -2747,7 +2747,7 @@ const AdminDashboard = () => {
                   <li><strong>🟢 Livrée (fulfilled)</strong> — Les identifiants ont été fournis (manuellement par vous OU automatiquement par une clé produit). L'acheteur peut les voir.</li>
                   <li><strong>🔴 Contestée (disputed)</strong> — L'acheteur a signalé un problème sur cette commande.</li>
                   <li><strong>✅ Résolue (resolved)</strong> — Vous avez traité la réclamation.</li>
-                  <li><strong>⚫ Annulée (cancelled)</strong> — Commande annulée. <em>Logique : le solde TND sont automatiquement remboursés et le stock est restauré.</em></li>
+                  <li><strong>⚫ Annulée (cancelled)</strong> — Commande annulée. <em>Logique : le solde Crédits sont automatiquement remboursés et le stock est restauré.</em></li>
                 </ul>
                 <h4>Remplir une commande manuellement</h4>
                 <ol>
@@ -2756,9 +2756,9 @@ const AdminDashboard = () => {
                   <li>Validez → statut passe à "fulfilled", l'acheteur reçoit une notification.</li>
                 </ol>
                 <h4>Réinitialiser les identifiants</h4>
-                <p>Si les identifiants ne fonctionnent plus : cliquez <strong>Reset</strong>. Les identifiants sont effacés et la commande repasse en "pending" pour que vous en fournissiez de nouveaux. <em>Logique : le solde TND ne sont pas re-déduits, c'est juste un remplacement d'identifiants.</em></p>
+                <p>Si les identifiants ne fonctionnent plus : cliquez <strong>Reset</strong>. Les identifiants sont effacés et la commande repasse en "pending" pour que vous en fournissiez de nouveaux. <em>Logique : le solde Crédits ne sont pas re-déduits, c'est juste un remplacement d'identifiants.</em></p>
                 <h4>Annuler une commande</h4>
-                <p>Cliquez <strong>Annuler</strong>. <em>Logique automatique : le solde TND sont remboursés au client/revendeur + le stock est restauré de +1.</em></p>
+                <p>Cliquez <strong>Annuler</strong>. <em>Logique automatique : le solde Crédits sont remboursés au client/revendeur + le stock est restauré de +1.</em></p>
               </DocSection>
 
               {/* Clés produit */}
@@ -2787,19 +2787,19 @@ const AdminDashboard = () => {
                 <p>Les revendeurs sont des partenaires commerciaux. Ils achètent vos produits et les revendent à leurs propres clients.</p>
                 <h4>Créer un revendeur</h4>
                 <ol>
-                  <li>Cliquez <strong>+ Créer</strong> → nom, email, mot de passe, TND initiaux.</li>
+                  <li>Cliquez <strong>+ Créer</strong> → nom, email, mot de passe, Crédits initiaux.</li>
                   <li><strong>Option "Peut ajouter des revendeurs"</strong> — Si activée, ce revendeur peut recruter ses propres sous-revendeurs. <em>Logique : il devient un "super revendeur" avec un mini-tableau de bord de gestion.</em></li>
                 </ol>
                 <h4>Ce que le revendeur voit dans son espace</h4>
                 <ul>
-                  <li>La liste de vos services avec les prix en TND.</li>
-                  <li>Son solde de TND.</li>
+                  <li>La liste de vos services avec les prix en Crédits.</li>
+                  <li>Son solde de Crédits.</li>
                   <li>Ses commandes passées et leurs statuts.</li>
                   <li>La possibilité de recharger son solde via un code de recharge.</li>
                   <li>S'il a le droit : la gestion de ses sous-revendeurs.</li>
                 </ul>
-                <h4>Gérer le solde TND</h4>
-                <p>Icône <strong>💰</strong> → Ajouter, Retirer ou Vider le solde TND. Chaque opération est enregistrée dans l'historique des transactions.</p>
+                <h4>Gérer le solde Crédits</h4>
+                <p>Icône <strong>💰</strong> → Ajouter, Retirer ou Vider le solde Crédits. Chaque opération est enregistrée dans l'historique des transactions.</p>
                 <h4>Activer / Désactiver</h4>
                 <p>Bouton <strong>⚡</strong>. Un revendeur désactivé ne peut plus se connecter ni commander. Ses données restent intactes.</p>
               </DocSection>
@@ -2808,39 +2808,39 @@ const AdminDashboard = () => {
               <DocSection title="👥 Clients" id="clients">
                 <p>Vos acheteurs directs.</p>
                 <h4>Créer un client</h4>
-                <p>Cliquez <strong>+ Créer</strong> → nom, email (unique), mot de passe (min 6 caractères), TND initiaux.</p>
+                <p>Cliquez <strong>+ Créer</strong> → nom, email (unique), mot de passe (min 6 caractères), Crédits initiaux.</p>
                 <h4>Ce que le client voit dans son espace</h4>
                 <ul>
                   <li>Les services disponibles, triés par catégorie.</li>
-                  <li>Son solde de TND.</li>
+                  <li>Son solde de Crédits.</li>
                   <li>Ses commandes avec les identifiants (quand livrées).</li>
                   <li>Ses notifications.</li>
                   <li>La possibilité d'ouvrir une réclamation sur une commande livrée.</li>
                 </ul>
-                <h4>Gérer le solde TND</h4>
+                <h4>Gérer le solde Crédits</h4>
                 <p>Icône <strong>💰</strong> → 3 options :</p>
                 <ul>
-                  <li><strong>Ajouter</strong> — Ajoute du solde TND (après que le client vous ait payé).</li>
-                  <li><strong>Retirer</strong> — Retire du solde TND (ne descend jamais en dessous de 0).</li>
+                  <li><strong>Ajouter</strong> — Ajoute du solde Crédits (après que le client vous ait payé).</li>
+                  <li><strong>Retirer</strong> — Retire du solde Crédits (ne descend jamais en dessous de 0).</li>
                   <li><strong>Vider</strong> — Remet le solde à 0 d'un coup.</li>
                 </ul>
-                <p><em>Logique : chaque mouvement de TND crée une ligne dans l'historique des transactions (visible par vous et par le client).</em></p>
+                <p><em>Logique : chaque mouvement de Crédits crée une ligne dans l'historique des transactions (visible par vous et par le client).</em></p>
                 <h4>Actions en lot</h4>
                 <p>Cochez plusieurs clients → Supprimer ou Activer/Désactiver en un clic. Export CSV disponible.</p>
               </DocSection>
 
-              {/* Paiement en TND */}
-              <DocSection title="💰 Paiements en TND — La logique financière" id="credits">
-                <p>Le solde TND sont la monnaie interne de TN SAT. Voici tout ce qu'il faut savoir :</p>
+              {/* Paiement en Crédits */}
+              <DocSection title="💰 Paiements en Crédits — La logique financière" id="credits">
+                <p>Le solde Crédits sont la monnaie interne de TN SAT. Voici tout ce qu'il faut savoir :</p>
                 <h4>Fonctionnement</h4>
-                <p>Le solde TND sont la seule unité de valeur sur TN SAT. Vous fixez le prix de chaque produit en TND. Le taux de conversion interne (modifiable dans Paramètres) sert uniquement au calcul interne.</p>
-                <h4>Quand le solde TND bougent automatiquement</h4>
+                <p>Le solde Crédits sont la seule unité de valeur sur TN SAT. Vous fixez le prix de chaque produit en Crédits. Le taux de conversion interne (modifiable dans Paramètres) sert uniquement au calcul interne.</p>
+                <h4>Quand le solde Crédits bougent automatiquement</h4>
                 <ul>
-                  <li><strong>Achat</strong> → Le solde TND sont déduits du solde de l'acheteur.</li>
-                  <li><strong>Annulation</strong> → Le solde TND sont remboursés automatiquement.</li>
-                  <li><strong>Recharge par code</strong> → Le solde TND sont ajoutés au revendeur qui entre le code.</li>
+                  <li><strong>Achat</strong> → Le solde Crédits sont déduits du solde de l'acheteur.</li>
+                  <li><strong>Annulation</strong> → Le solde Crédits sont remboursés automatiquement.</li>
+                  <li><strong>Recharge par code</strong> → Le solde Crédits sont ajoutés au revendeur qui entre le code.</li>
                 </ul>
-                <h4>Quand VOUS bougez le solde TND manuellement</h4>
+                <h4>Quand VOUS bougez le solde Crédits manuellement</h4>
                 <ul>
                   <li>Via le bouton 💰 sur un client ou revendeur (ajouter / retirer / vider).</li>
                 </ul>
@@ -2850,12 +2850,12 @@ const AdminDashboard = () => {
 
               {/* Codes de recharge */}
               <DocSection title="🎫 Codes de Recharge" id="recharge">
-                <p>Les codes de recharge permettent aux <strong>revendeurs</strong> de s'ajouter du solde TND de manière autonome, sans vous contacter.</p>
+                <p>Les codes de recharge permettent aux <strong>revendeurs</strong> de s'ajouter du solde Crédits de manière autonome, sans vous contacter.</p>
                 <h4>Comment ça marche</h4>
                 <ol>
-                  <li>Vous générez des codes (ex: "TNSAT-A8K2M") avec un montant de TND prédéfini.</li>
+                  <li>Vous générez des codes (ex: "TNSAT-A8K2M") avec un montant de Crédits prédéfini.</li>
                   <li>Vous donnez ces codes à vos revendeurs (en échange d'un paiement réel).</li>
-                  <li>Le revendeur entre le code dans son espace → le solde TND sont ajoutés automatiquement à son solde.</li>
+                  <li>Le revendeur entre le code dans son espace → le solde Crédits sont ajoutés automatiquement à son solde.</li>
                 </ol>
                 <h4>⚠️ Règles importantes</h4>
                 <ul>
@@ -2868,17 +2868,17 @@ const AdminDashboard = () => {
               {/* Historique & Transactions */}
               <DocSection title="📜 Historique & Transactions" id="historique">
                 <h4>Onglet Historique</h4>
-                <p>Toutes les commandes livrées, triées par date (les plus récentes en premier). Montre : service, acheteur, TND utilisés, dates.</p>
+                <p>Toutes les commandes livrées, triées par date (les plus récentes en premier). Montre : service, acheteur, Crédits utilisés, dates.</p>
                 <h4>Onglet Transactions</h4>
-                <p>Vue financière : mêmes données mais avec les montants convertis en TND. Exportable en CSV pour votre comptabilité.</p>
+                <p>Vue financière : mêmes données mais avec les montants convertis en Crédits. Exportable en CSV pour votre comptabilité.</p>
                 <h4>Onglet Reset Codes</h4>
                 <p>Liste des commandes livrées avec un bouton <strong>Reset</strong> rapide pour réinitialiser les identifiants si besoin.</p>
               </DocSection>
 
               {/* Paramètres */}
               <DocSection title="⚙️ Paramètres" id="settings">
-                <h4>Taux de conversion TND → TNDs</h4>
-                <p>Ce chiffre détermine combien de TND vaut 1 TND. Actuellement : <strong>1 TND = {CREDITS_PER_TND} TND</strong>.</p>
+                <h4>Taux de conversion Crédits → Créditss</h4>
+                <p>Ce chiffre détermine combien de Crédits vaut 1 Crédits. Actuellement : <strong>1 Crédits = {CREDITS_PER_TND} Crédits</strong>.</p>
                 <h4>Comment modifier</h4>
                 <ol>
                   <li>Allez dans <strong>Paramètres</strong> (icône 💰 dans le menu).</li>
@@ -2886,9 +2886,9 @@ const AdminDashboard = () => {
                 </ol>
                 <h4>⚠️ Impact du changement</h4>
                 <ul>
-                  <li>Les <strong>prix des services</strong> changent immédiatement (prix TND × nouveau taux = nouveau prix en TND).</li>
-                  <li>Les <strong>TND déjà attribués</strong> aux comptes ne changent pas.</li>
-                  <li><em>Exemple : si vous passez de 10 à 20 TND/TND, un service à 5 TND passe de 50 à 100 TND. Mais un client qui avait 50 TND les garde — il pourra juste acheter moins de choses.</em></li>
+                  <li>Les <strong>prix des services</strong> changent immédiatement (prix Crédits × nouveau taux = nouveau prix en Crédits).</li>
+                  <li>Les <strong>Crédits déjà attribués</strong> aux comptes ne changent pas.</li>
+                  <li><em>Exemple : si vous passez de 10 à 20 Crédits/Crédits, un service à 5 Crédits passe de 50 à 100 Crédits. Mais un client qui avait 50 Crédits les garde — il pourra juste acheter moins de choses.</em></li>
                 </ul>
                 <p><strong>Conseil :</strong> Évitez de changer souvent. Prévenez vos revendeurs avant tout changement.</p>
               </DocSection>
@@ -2899,7 +2899,7 @@ const AdminDashboard = () => {
                 <ul>
                   <li><strong>Commande livrée</strong> → Le client/revendeur est notifié que ses identifiants sont prêts.</li>
                   <li><strong>Réclamation mise à jour</strong> → Notification quand vous répondez à une réclamation.</li>
-                  <li><strong>TND ajoutés</strong> → Notification quand vous ajoutez du solde TND à un compte.</li>
+                  <li><strong>Crédits ajoutés</strong> → Notification quand vous ajoutez du solde Crédits à un compte.</li>
                 </ul>
                 <p>Les notifications apparaissent sous forme de 🔔 dans le tableau de bord de chaque utilisateur.</p>
               </DocSection>
@@ -3010,7 +3010,7 @@ const AdminDashboard = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>Gérer solde — {pointsTarget?.name}</AlertDialogTitle>
             <AlertDialogDescription>
-              Solde actuel : <span className="font-bold text-primary">{pointsTarget?.credits?.toLocaleString()} TND</span>
+              Solde actuel : <span className="font-bold text-primary">{pointsTarget?.credits?.toLocaleString()} Crédits</span>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="flex gap-2 mb-3">
@@ -3038,7 +3038,7 @@ const AdminDashboard = () => {
                 step={0.01}
                 value={pointsAmount}
                 onChange={(e) => setPointsAmount(e.target.value)}
-                placeholder={pointsAction === "add" ? "Montant TND à ajouter" : "Montant TND à retirer"}
+                placeholder={pointsAction === "add" ? "Montant Crédits à ajouter" : "Montant Crédits à retirer"}
                 className={inputClass}
               />
               <input
@@ -3056,12 +3056,12 @@ const AdminDashboard = () => {
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* Manage reseller TND */}
+      {/* Manage reseller Crédits */}
       <AlertDialog open={!!resellerPointsTarget} onOpenChange={() => setResellerPointsTarget(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Gérer solde — {resellerPointsTarget?.name}</AlertDialogTitle>
-            <AlertDialogDescription>{resellerPointsTarget?.email} — Solde actuel : <span className="font-bold text-primary">{resellerPointsTarget?.credits?.toLocaleString()} TND</span></AlertDialogDescription>
+            <AlertDialogDescription>{resellerPointsTarget?.email} — Solde actuel : <span className="font-bold text-primary">{resellerPointsTarget?.credits?.toLocaleString()} Crédits</span></AlertDialogDescription>
           </AlertDialogHeader>
           <div className="space-y-4">
             <div className="flex gap-2">
@@ -3075,14 +3075,14 @@ const AdminDashboard = () => {
             {resellerPointsAction !== "empty" && (
               <div>
                 <label className="text-xs font-semibold text-muted-foreground uppercase mb-1 block">
-                  {resellerPointsAction === "add" ? "TNDs à ajouter" : "TNDs à retirer"}
+                  {resellerPointsAction === "add" ? "Créditss à ajouter" : "Créditss à retirer"}
                 </label>
                 <input type="number" min={0.01} step={0.01} placeholder="Ex: 50" value={pointsAmount} onChange={(e) => setPointsAmount(e.target.value)} className={inputClass} />
               </div>
             )}
             {resellerPointsAction === "empty" && (
               <p className="text-sm text-destructive font-medium p-3 rounded-lg bg-destructive/10 border border-destructive/20">
-                ⚠️ Cela va vider entièrement le solde de {resellerPointsTarget?.credits?.toLocaleString()} TND.
+                ⚠️ Cela va vider entièrement le solde de {resellerPointsTarget?.credits?.toLocaleString()} Crédits.
               </p>
             )}
             {resellerPointsAction === "add" && (
@@ -3114,7 +3114,7 @@ const AdminDashboard = () => {
           <AlertDialogHeader>
             <AlertDialogTitle className="flex items-center gap-2"><History className="h-5 w-5 text-primary" />{t("transactionHistory")} — {txHistoryReseller?.name}</AlertDialogTitle>
             <AlertDialogDescription>
-              {txHistoryReseller?.email} — Solde : <span className="font-bold text-primary">{txHistoryReseller?.credits?.toLocaleString()} TND</span>
+              {txHistoryReseller?.email} — Solde : <span className="font-bold text-primary">{txHistoryReseller?.credits?.toLocaleString()} Crédits</span>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="max-h-[60vh] overflow-y-auto -mx-6 px-6">
@@ -3518,7 +3518,7 @@ const AdminDashboard = () => {
             <AlertDialogTitle>{t("viewResponses")} — {viewingResponseOrder?.service_name}</AlertDialogTitle>
             <AlertDialogDescription>
               {viewingResponseOrder?.reseller_name || viewingResponseOrder?.client_name || ""}
-              {viewingResponseOrder?.credits_used ? ` • ${viewingResponseOrder.credits_used} TND` : ""}
+              {viewingResponseOrder?.credits_used ? ` • ${viewingResponseOrder.credits_used} Crédits` : ""}
             </AlertDialogDescription>
           </AlertDialogHeader>
 
@@ -3635,7 +3635,7 @@ const AdminDashboard = () => {
           <div className="bg-secondary/40 border border-border rounded-xl p-3 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm">
               <span className="text-muted-foreground">{t("defaultPrice")}: </span>
-              <span className="font-bold text-foreground">{pricingService?.price_credits} TND</span>
+              <span className="font-bold text-foreground">{pricingService?.price_credits} Crédits</span>
               <span className="text-xs text-muted-foreground ms-3">
                 {pricingOverrides.length} {t("customPriceCount")}
               </span>
@@ -3675,7 +3675,7 @@ const AdminDashboard = () => {
                         placeholder={String(pricingService?.price_credits ?? "")}
                         className="w-full h-9 rounded-lg border border-border bg-background px-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
                       />
-                      <span className="text-xs text-muted-foreground">TND</span>
+                      <span className="text-xs text-muted-foreground">Crédits</span>
                     </div>
                     <div className="col-span-3 flex items-center justify-end gap-1.5">
                       {ov && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-400 font-semibold">{t("customPrice")}</span>}
@@ -3903,7 +3903,7 @@ const AdminDashboard = () => {
             <AlertDialogTitle>{t("approveOrder")} — {approvingOrder?.service_name}</AlertDialogTitle>
             <AlertDialogDescription>
               {approvingOrder?.reseller_name || approvingOrder?.client_name || ""}
-              {approvingOrder?.credits_used ? ` • ${approvingOrder.credits_used} TND` : ""}
+              {approvingOrder?.credits_used ? ` • ${approvingOrder.credits_used} Crédits` : ""}
             </AlertDialogDescription>
           </AlertDialogHeader>
 

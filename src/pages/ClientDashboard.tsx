@@ -435,7 +435,7 @@ const ClientDashboard = () => {
                             <div className="flex items-center justify-between mb-5 py-3 px-4 rounded-xl bg-secondary/50">
                              <div className="flex items-baseline gap-1">
                                 <span className="text-2xl font-display font-bold text-foreground">{s.price_credits}</span>
-                                <span className="text-xs text-muted-foreground">TND</span>
+                                <span className="text-xs text-muted-foreground">Crédits</span>
                               </div>
                             </div>
 

@@ -82,9 +82,9 @@ const ClientDetailPanel = ({ client, onBack }: ClientDetailPanelProps) => {
 
       {/* Stats cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-        <MiniStat icon={Zap} label="Solde actuel" value={`${client.credits.toLocaleString()} TND`} color="primary" />
+        <MiniStat icon={Zap} label="Solde actuel" value={`${client.credits.toLocaleString()} Crédits`} color="primary" />
         <MiniStat icon={ShoppingCart} label="Commandes" value={orders.length.toString()} color="accent" />
-        <MiniStat icon={TrendingDown} label="TND dépensés" value={totalSpent.toLocaleString()} color="destructive" />
+        <MiniStat icon={TrendingDown} label="Crédits dépensés" value={totalSpent.toLocaleString()} color="destructive" />
         <MiniStat icon={CheckCircle} label="Actives" value={activeOrders.toString()} color="success" />
       </div>
 
@@ -132,7 +132,7 @@ const ClientDetailPanel = ({ client, onBack }: ClientDetailPanelProps) => {
                       <thead>
                         <tr className="border-b border-border bg-secondary/30">
                           <th className="py-3 px-4 font-medium text-muted-foreground text-start">Service</th>
-                          <th className="py-3 px-4 font-medium text-muted-foreground text-start">TNDs</th>
+                          <th className="py-3 px-4 font-medium text-muted-foreground text-start">Créditss</th>
                           <th className="py-3 px-4 font-medium text-muted-foreground text-start">Durée</th>
                           <th className="py-3 px-4 font-medium text-muted-foreground text-start">Date</th>
                           <th className="py-3 px-4 font-medium text-muted-foreground text-start">Statut</th>
@@ -176,7 +176,7 @@ const ClientDetailPanel = ({ client, onBack }: ClientDetailPanelProps) => {
                         </div>
                         <div className="flex flex-wrap gap-2 text-xs">
                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/5 text-primary font-semibold">
-                            <Zap className="h-3 w-3" />{o.credits_used} TND
+                            <Zap className="h-3 w-3" />{o.credits_used} Crédits
                           </span>
                           <span className="text-muted-foreground">{o.duration_months || 12} mois</span>
                           <span className="text-muted-foreground">{new Date(o.created_at).toLocaleDateString()}</span>
@@ -224,7 +224,7 @@ const ClientDetailPanel = ({ client, onBack }: ClientDetailPanelProps) => {
                             <td className="py-3 px-4">
                               {tx.type === "credit" ? (
                                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-success/10 text-success text-xs font-medium">
-                                  <TrendingUp className="h-3 w-3" />TND
+                                  <TrendingUp className="h-3 w-3" />Crédits
                                 </span>
                               ) : (
                                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-destructive/10 text-destructive text-xs font-medium">
@@ -234,7 +234,7 @@ const ClientDetailPanel = ({ client, onBack }: ClientDetailPanelProps) => {
                             </td>
                             <td className="py-3 px-4">
                               <span className={`font-semibold ${tx.type === "credit" ? "text-success" : "text-destructive"}`}>
-                                {tx.type === "credit" ? "+" : "−"}{tx.amount} TND
+                                {tx.type === "credit" ? "+" : "−"}{tx.amount} Crédits
                               </span>
                             </td>
                             <td className="py-3 px-4">
@@ -257,7 +257,7 @@ const ClientDetailPanel = ({ client, onBack }: ClientDetailPanelProps) => {
                         <div className="flex items-center justify-between gap-2">
                           {tx.type === "credit" ? (
                             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-success/10 text-success text-xs font-medium">
-                              <TrendingUp className="h-3 w-3" />TND
+                              <TrendingUp className="h-3 w-3" />Crédits
                             </span>
                           ) : (
                             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-destructive/10 text-destructive text-xs font-medium">
@@ -265,7 +265,7 @@ const ClientDetailPanel = ({ client, onBack }: ClientDetailPanelProps) => {
                             </span>
                           )}
                           <span className={`font-bold text-sm ${tx.type === "credit" ? "text-success" : "text-destructive"}`}>
-                            {tx.type === "credit" ? "+" : "−"}{tx.amount} TND
+                            {tx.type === "credit" ? "+" : "−"}{tx.amount} Crédits
                           </span>
                         </div>
                         <div className="flex items-center justify-between text-xs">
