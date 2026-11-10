@@ -7,7 +7,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 // Lazy-loaded pages
 const Landing = lazy(() => import("@/pages/Landing"));
@@ -59,7 +58,6 @@ const AppLayout = () => {
         </Suspense>
       </main>
       {!isLoginPage && <Footer />}
-      {!isLoginPage && <WhatsAppButton />}
     </div>
   );
 };
